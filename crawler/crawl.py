@@ -7,7 +7,7 @@ from itertools import chain
 
 
 class Crawler:
-    
+
     def __init__(self, loop=None, timeout=5, max_tasks=20):
         loop = loop or asyncio.get_event_loop()
         self._loop = loop
@@ -52,9 +52,10 @@ class Crawler:
 
         res = set()
 
-        for phone in re.findall(r'\b[\+7|7|8]?[\s\-]?\(?[489][0-9]{2}\)?[\s\-]?[0-9]{3}[\s\-]?[0-9]{2}[\s\-]?[0-9]{2}\b|'
-                                r'\b[0-9]{3}[\s\-]?[0-9]{2}[\s\-]?[0-9]{2}\b',
-                                resp):
+        for phone in re.findall(
+                r'\b[\+7|7|8]?[\s\-]?\(?[489][0-9]{2}\)?[\s\-]?[0-9]{3}[\s\-]?[0-9]{2}[\s\-]?[0-9]{2}\b|'
+                r'\b[0-9]{3}[\s\-]?[0-9]{2}[\s\-]?[0-9]{2}\b',
+                resp):
 
             # remove spaces, dashes and parenths
             phone = re.sub(r'[\s\-\(\)]', '', phone)
@@ -63,8 +64,8 @@ class Crawler:
             if len(phone) == 7:  # XXXYYZZ
                 phone = '8495' + phone
 
-            elif len(phone) == 11:           # [8|7]916XXXYYZZ
-                if phone.startswith('7'):    # 7916XXXYYZZ
+            elif len(phone) == 11:  # [8|7]916XXXYYZZ
+                if phone.startswith('7'):  # 7916XXXYYZZ
                     phone = '8' + phone[1:]
 
             elif len(phone) == 10:  # 498XXXYYZZ
