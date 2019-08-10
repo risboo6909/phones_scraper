@@ -1,1 +1,1 @@
-# hands.ru
+# Extract phone numbers from web-sites
